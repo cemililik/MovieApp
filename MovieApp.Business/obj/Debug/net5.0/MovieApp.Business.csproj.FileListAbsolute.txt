@@ -1,0 +1,17 @@
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\bin\Debug\net5.0\MovieApp.Business.deps.json
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\bin\Debug\net5.0\MovieApp.Business.dll
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\bin\Debug\net5.0\ref\MovieApp.Business.dll
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\bin\Debug\net5.0\MovieApp.Business.pdb
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\bin\Debug\net5.0\MovieApp.DataAccess.dll
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\bin\Debug\net5.0\MovieApp.Entities.dll
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\bin\Debug\net5.0\MovieApp.DataAccess.pdb
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\bin\Debug\net5.0\MovieApp.Entities.pdb
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\MovieApp.Business.csproj.AssemblyReference.cache
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\MovieApp.Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\MovieApp.Business.AssemblyInfoInputs.cache
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\MovieApp.Business.AssemblyInfo.cs
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\MovieApp.Business.csproj.CoreCompileInputs.cache
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\MovieApp.Business.csproj.CopyComplete
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\MovieApp.Business.dll
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\ref\MovieApp.Business.dll
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\MovieApp.Business.pdb

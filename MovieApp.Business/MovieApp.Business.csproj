@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MovieApp.DataAccess\MovieApp.DataAccess.csproj" />
+    <ProjectReference Include="..\MovieApp.Entities\MovieApp.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,12 @@
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Entities\bin\Debug\net5.0\MovieApp.Entities.deps.json
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Entities\bin\Debug\net5.0\MovieApp.Entities.dll
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Entities\bin\Debug\net5.0\ref\MovieApp.Entities.dll
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Entities\bin\Debug\net5.0\MovieApp.Entities.pdb
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Entities\obj\Debug\net5.0\MovieApp.Entities.csproj.AssemblyReference.cache
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Entities\obj\Debug\net5.0\MovieApp.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Entities\obj\Debug\net5.0\MovieApp.Entities.AssemblyInfoInputs.cache
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Entities\obj\Debug\net5.0\MovieApp.Entities.AssemblyInfo.cs
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Entities\obj\Debug\net5.0\MovieApp.Entities.csproj.CoreCompileInputs.cache
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Entities\obj\Debug\net5.0\MovieApp.Entities.dll
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Entities\obj\Debug\net5.0\ref\MovieApp.Entities.dll
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Entities\obj\Debug\net5.0\MovieApp.Entities.pdb
