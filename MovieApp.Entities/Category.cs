@@ -8,16 +8,13 @@ using System.Threading.Tasks;
 
 namespace MovieApp.Entities
 {
-    public class Movie
+    public class Category
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int MovieId { get; set; }
-        public string MovieName { get; set; }
-        public string Description { get; set; }
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public string CategoryDescription { get; set; }
 
-
-        public List<Review> Reviews { get; set; }
-        public List<MovieStar> MovieStars { get; set; }
         public List<MovieCategory> MovieCategories { get; set; }
     }
 }

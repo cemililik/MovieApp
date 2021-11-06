@@ -30,26 +30,26 @@ namespace MovieApp.API.Controllers
 
         [HttpPost]
         [Route("[Action]")]
-        public async Task<IActionResult> CreateReview([FromBody]CreateReviewModel reviewModel)
+        public async Task<IActionResult> CreateReview([FromBody]Review reviewModel)
         {
-            var movie = await movieService.GetMovieById(reviewModel.MovieId);
-            var CreatedReview = new Review();
-            CreatedReview.ReviewText = reviewModel.ReviewText;
-            CreatedReview.ReviewScore = reviewModel.ReviewScore;
-            CreatedReview.Movie = movie;
+            //var movie = await movieService.GetMovieById(reviewModel.MovieId);
+            //var CreatedReview = new Review();
+            //CreatedReview.ReviewText = reviewModel.ReviewText;
+            //CreatedReview.ReviewScore = reviewModel.ReviewScore;
+            //CreatedReview.MovieId = movie.MovieId;
             if (User.Identity.IsAuthenticated)
             {
-                var user = await userManager.FindByNameAsync(User.Identity.Name);
-                CreatedReview.User = user;
+                //var user = await userManager.FindByIdAsync(User.Identity.Name);
+                //CreatedReview.UserId = user.Id;
             }
             else
             {
-                var user = await userManager.FindByIdAsync("9ee005d1-733d-4aa1-83cc-d05cb3c19854");
-                CreatedReview.User = user;
+                //var user = await userManager.FindByIdAsync("9ee005d1-733d-4aa1-83cc-d05cb3c19854");
+                reviewModel.UserId = "9ee005d1-733d-4aa1-83cc-d05cb3c19854";
             }
-            await reviewService.CreateReview(CreatedReview);
+            await reviewService.CreateReview(reviewModel);
             reviewService.SaveChanges();
-            return  CreatedAtAction("Get", reviewModel);
+            return  Ok(reviewModel);
         }
 
       

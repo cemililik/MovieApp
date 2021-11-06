@@ -25,7 +25,10 @@ namespace MovieApp.DataAccess.Concrete
         {
             using (var contex = new ApplicationContext())
             {
-                return await contex.Reviews.Where(i => i.Movie.MovieId == MovieID).ToListAsync();
+                return await contex.Reviews
+                    //.Include(j=>j.Movie)
+                    //.Include(k=>k.User)
+                    .Where(i => i.MovieId == MovieID).ToListAsync();
             }
         }
 
@@ -33,7 +36,7 @@ namespace MovieApp.DataAccess.Concrete
         {
             using (var contex = new ApplicationContext())
             {
-                return await contex.Reviews.Where(i => i.Movie.MovieId == MovieId && i.User.Id == UserId) .ToListAsync();
+                return await contex.Reviews.Where(i => i.MovieId == MovieId && i.UserId == UserId) .ToListAsync();
             }
         }
 

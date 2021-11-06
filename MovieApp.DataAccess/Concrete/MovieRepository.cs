@@ -24,7 +24,9 @@ namespace MovieApp.DataAccess.Concrete
         {
             using (var contex = new ApplicationContext())
             {
-                return await contex.Movies.FindAsync(id); 
+                return contex.Movies
+                    .Include(i=>i.Reviews)
+                    .FirstOrDefault(j=>j.MovieId == id); 
             }
         }
         public void Dispose()

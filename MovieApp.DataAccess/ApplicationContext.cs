@@ -15,5 +15,10 @@ namespace MovieApp.DataAccess
 
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<MovieCategory> MovieCategories { get; set; }
+        public DbSet<MovieStar> MovieStars { get; set; }
+        public DbSet<Star> Stars { get; set; }
+
     }
 }

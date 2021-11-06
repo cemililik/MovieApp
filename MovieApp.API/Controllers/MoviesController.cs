@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MovieApp.API.Models;
 using MovieApp.Business.Abstract;
 using MovieApp.Business.Concrete;
 using MovieApp.Entities;
@@ -16,11 +17,12 @@ namespace MovieApp.API.Controllers
     public class MoviesController : ControllerBase
     {
         private IMovieService movieService;
+        private IReviewService reviewService;
         //private UserManager<User> userManager;
-        public MoviesController(IMovieService _movieService/*, UserManager<User> _userManager*/)
+        public MoviesController(IMovieService _movieService, IReviewService _reviewService)
         {
             movieService = _movieService;
-            //userManager = _userManager;
+            reviewService = _reviewService;
         }
         /// <summary>
         /// Get All Movies
@@ -40,16 +42,18 @@ namespace MovieApp.API.Controllers
             var movie = await movieService.GetMovieById(id);
             if (movie != null)
             {
-                //if (User.Identity.IsAuthenticated)
-                //{
-                //    //buraya user a ait yorum olan metod gelecek
-                //    return Ok(movie);
-                //}
-                //else
-                //{
-                //    return Ok(movie);
-                //}
-                return Ok(movie);
+                var _movie = new MovieReviewModel();
+                _movie.Movie = movie;
+                if (User.Identity.IsAuthenticated)
+                {
+                    _movie.Reviews = await reviewService.GetReviewByMovieId(id);
+                    return Ok(movie);
+                }
+                else
+                {
+                    _movie.Reviews = await reviewService.GetReviewByMovieId(id);
+                    return Ok(movie);
+                }
             }
             return NotFound();
         }

@@ -17,8 +17,8 @@ namespace MovieApp.Entities
         public int ReviewScore { get; set; }
 
 
-        public User User { get; set; }
-        public Movie Movie { get; set; }
+        public string UserId { get; set; }
+        public int MovieId { get; set; }
 
 
 
