@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MovieApp.API.Models;
@@ -28,6 +29,7 @@ namespace MovieApp.API.Controllers
         /// Get All Movies
         /// </summary>
         /// <returns></returns>
+        //[Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllMovies()
         {
@@ -35,6 +37,7 @@ namespace MovieApp.API.Controllers
             return Ok(movies);
         }
 
+        [Authorize]
         [HttpGet]
         [Route("[action]/{id}")]
         public async Task<IActionResult> GetMovieById(int id)

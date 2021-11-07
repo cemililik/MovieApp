@@ -68,4 +68,3 @@ C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.API\obj\Debug\net5.0\M
 C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.API\obj\Debug\net5.0\MovieApp.API.genruntimeconfig.cache
 C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.API\bin\Debug\net5.0\MovieApp.API.xml
 C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.API\obj\Debug\net5.0\MovieApp.API.csproj.CopyComplete

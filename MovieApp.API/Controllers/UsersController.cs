@@ -1,12 +1,17 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using MovieApp.API.Models;
 using MovieApp.DataAccess;
 using MovieApp.Entities;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieApp.API.Controllers
@@ -18,11 +23,13 @@ namespace MovieApp.API.Controllers
         private UserManager<User> usermanager;
         private SignInManager<User> signInManager;
         private ApplicationContext context;
-        public UsersController(UserManager<User> _usermanager, ApplicationContext _context, SignInManager<User> _signInManager)
+        private IConfiguration configuration;
+        public UsersController(UserManager<User> _usermanager, ApplicationContext _context, SignInManager<User> _signInManager, IConfiguration _configuration)
         {
             usermanager = _usermanager;
             context = _context;
             signInManager = _signInManager;
+            configuration = _configuration;
         }
 
         [HttpPost]
@@ -49,6 +56,7 @@ namespace MovieApp.API.Controllers
         {
             var _user = await usermanager.FindByEmailAsync(user.EmailAddress);
             var result = await signInManager.PasswordSignInAsync(_user, user.Password,true,true);
+            
             if (result.Succeeded)
             {
                 return Ok();
@@ -57,6 +65,26 @@ namespace MovieApp.API.Controllers
             {
                 return BadRequest();
             }
+        }
+        [HttpGet]
+        [Route("[Action]")]
+        public IActionResult GetToken()
+        {
+            //---Get token temp
+            var TokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(/*configuration["JWTKey"]*/"denemeasdfsdgsjkgsdlfsdlkfsdl lsdk fjsdkljf asd jlakjfsd");
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, "deneme")
+                }),
+                Expires = DateTime.UtcNow.AddDays(1),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = TokenHandler.CreateToken(tokenDescriptor);
+            //--
+            return Ok(TokenHandler.WriteToken(token));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MovieApp.API.Models;
@@ -30,6 +31,7 @@ namespace MovieApp.API.Controllers
 
         [HttpPost]
         [Route("[Action]")]
+        [Authorize]
         public async Task<IActionResult> CreateReview([FromBody]Review reviewModel)
         {
             //var movie = await movieService.GetMovieById(reviewModel.MovieId);
