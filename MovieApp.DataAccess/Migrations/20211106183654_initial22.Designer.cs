@@ -10,8 +10,8 @@ using MovieApp.DataAccess;
 namespace MovieApp.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20211106105208_initial")]
-    partial class initial
+    [Migration("20211106183654_initial22")]
+    partial class initial22
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -177,6 +177,9 @@ namespace MovieApp.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<double?>("AvarageScore")
+                        .HasColumnType("float");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -190,20 +193,18 @@ namespace MovieApp.DataAccess.Migrations
 
             modelBuilder.Entity("MovieApp.Entities.MovieCategory", b =>
                 {
-                    b.Property<int>("MovieCategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
 
-                    b.HasKey("MovieCategoryId");
+                    b.Property<int>("MovieCategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.HasIndex("CategoryId");
+                    b.HasKey("CategoryId", "MovieId");
 
                     b.HasIndex("MovieId");
 
@@ -212,20 +213,18 @@ namespace MovieApp.DataAccess.Migrations
 
             modelBuilder.Entity("MovieApp.Entities.MovieStar", b =>
                 {
-                    b.Property<int>("MovieStarId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
 
                     b.Property<int>("StarId")
                         .HasColumnType("int");
 
-                    b.HasKey("MovieStarId");
+                    b.Property<int>("MovieStarId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.HasIndex("MovieId");
+                    b.HasKey("MovieId", "StarId");
 
                     b.HasIndex("StarId");
 
@@ -396,32 +395,40 @@ namespace MovieApp.DataAccess.Migrations
 
             modelBuilder.Entity("MovieApp.Entities.MovieCategory", b =>
                 {
-                    b.HasOne("MovieApp.Entities.Category", null)
+                    b.HasOne("MovieApp.Entities.Category", "Category")
                         .WithMany("MovieCategories")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MovieApp.Entities.Movie", null)
+                    b.HasOne("MovieApp.Entities.Movie", "Movie")
                         .WithMany("MovieCategories")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("MovieApp.Entities.MovieStar", b =>
                 {
-                    b.HasOne("MovieApp.Entities.Movie", null)
+                    b.HasOne("MovieApp.Entities.Movie", "Movie")
                         .WithMany("MovieStars")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MovieApp.Entities.Star", null)
+                    b.HasOne("MovieApp.Entities.Star", "Star")
                         .WithMany("MovieStars")
                         .HasForeignKey("StarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Movie");
+
+                    b.Navigation("Star");
                 });
 
             modelBuilder.Entity("MovieApp.Entities.Review", b =>

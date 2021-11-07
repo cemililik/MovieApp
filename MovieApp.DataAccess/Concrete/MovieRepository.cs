@@ -16,7 +16,10 @@ namespace MovieApp.DataAccess.Concrete
             using(var contex = new ApplicationContext())
             {
                 
-                return await contex.Movies.ToListAsync();
+                return await contex.Movies
+                    //.Include(j=>j.MovieStars)
+                    //.Include(k=>k.MovieCategories)
+                    .ToListAsync();
             }
         }
 
@@ -26,6 +29,8 @@ namespace MovieApp.DataAccess.Concrete
             {
                 return contex.Movies
                     .Include(i=>i.Reviews)
+                    //.Include(j => j.MovieStars)
+                    //.Include(k => k.MovieCategories)
                     .FirstOrDefault(j=>j.MovieId == id); 
             }
         }
@@ -37,16 +42,16 @@ namespace MovieApp.DataAccess.Concrete
             }
         }
 
-        public double MovieAvarageScore(int id)
-        {
-            using (var contex = new ApplicationContext())
-            {
-                var movie = contex.Movies
-                    .Include(i => i.Reviews)
-                    .Where(j => j.MovieId == id);
-                double Avarage = movie.Average(i => i.Reviews.Count);
-                return Avarage;
-            }
-        }
+        //public double MovieAvarageScore(int id)
+        //{
+        //    using (var contex = new ApplicationContext())
+        //    {
+        //        var movie = contex.Movies
+        //            .Include(i => i.Reviews)
+        //            .Where(j => j.MovieId == id);
+               
+        //        return 15;
+        //    }
+        //}
     }
 }

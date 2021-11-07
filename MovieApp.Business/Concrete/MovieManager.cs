@@ -28,9 +28,9 @@ namespace MovieApp.Business.Concrete
             return await _movieRepository.GetMovieById(id);
         }
 
-        public double MovieAvarageScore(int id)
-        {
-            return MovieAvarageScore(id);
-        }
+        //public double MovieAvarageScore(int id)
+        //{
+        //    return _movieRepository.MovieAvarageScore(id);
+        //}
     }
 }

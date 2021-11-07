@@ -11,6 +11,6 @@ namespace MovieApp.DataAccess.Abstract
     {
         Task<List<Movie>> GetAllMovies();
         Task<Movie> GetMovieById(int id);
-        double MovieAvarageScore(int id);
+        //double MovieAvarageScore(int id);
     }
 }

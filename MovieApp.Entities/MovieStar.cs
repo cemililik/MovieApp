@@ -12,7 +12,12 @@ namespace MovieApp.Entities
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MovieStarId { get; set; }
+        [ForeignKey("Movie")]
         public int MovieId { get; set; }
+        [ForeignKey("Star")]
         public int StarId { get; set; }
+
+        public Movie Movie { get; set; }
+        public Star Star { get; set; }
     }
 }

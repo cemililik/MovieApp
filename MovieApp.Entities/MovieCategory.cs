@@ -12,7 +12,11 @@ namespace MovieApp.Entities
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MovieCategoryId { get; set; }
+        [ForeignKey("Movie")]
         public int MovieId { get; set; }
+        [ForeignKey("Category")]
         public int CategoryId { get; set; }
+        public Movie Movie { get; set; }
+        public Category Category { get; set; }
     }
 }

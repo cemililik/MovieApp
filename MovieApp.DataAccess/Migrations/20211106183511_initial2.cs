@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MovieApp.DataAccess.Migrations
 {
-    public partial class initial : Migration
+    public partial class initial2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -67,7 +67,8 @@ namespace MovieApp.DataAccess.Migrations
                     MovieId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MovieName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AvarageScore = table.Column<double>(type: "float", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -198,14 +199,14 @@ namespace MovieApp.DataAccess.Migrations
                 name: "MovieCategories",
                 columns: table => new
                 {
-                    MovieCategoryId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     MovieId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    MovieCategoryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieCategories", x => x.MovieCategoryId);
+                    table.PrimaryKey("PK_MovieCategories", x => new { x.CategoryId, x.MovieId });
                     table.ForeignKey(
                         name: "FK_MovieCategories_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -252,14 +253,14 @@ namespace MovieApp.DataAccess.Migrations
                 name: "MovieStars",
                 columns: table => new
                 {
-                    MovieStarId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     MovieId = table.Column<int>(type: "int", nullable: false),
-                    StarId = table.Column<int>(type: "int", nullable: false)
+                    StarId = table.Column<int>(type: "int", nullable: false),
+                    MovieStarId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieStars", x => x.MovieStarId);
+                    table.PrimaryKey("PK_MovieStars", x => new { x.MovieId, x.StarId });
                     table.ForeignKey(
                         name: "FK_MovieStars_Movies_MovieId",
                         column: x => x.MovieId,
@@ -314,18 +315,8 @@ namespace MovieApp.DataAccess.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MovieCategories_CategoryId",
-                table: "MovieCategories",
-                column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_MovieCategories_MovieId",
                 table: "MovieCategories",
-                column: "MovieId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MovieStars_MovieId",
-                table: "MovieStars",
                 column: "MovieId");
 
             migrationBuilder.CreateIndex(

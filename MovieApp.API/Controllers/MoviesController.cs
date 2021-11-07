@@ -42,27 +42,9 @@ namespace MovieApp.API.Controllers
             var movie = await movieService.GetMovieById(id);
             if (movie != null)
             {
-                var _movie = new MovieReviewModel();
-                _movie.Movie = movie;
-                if (User.Identity.IsAuthenticated)
-                {
-                    _movie.Reviews = await reviewService.GetReviewByMovieId(id);
-                    return Ok(movie);
-                }
-                else
-                {
-                    _movie.Reviews = await reviewService.GetReviewByMovieId(id);
-                    return Ok(movie);
-                }
+                return Ok(movie);
             }
             return NotFound();
-        }
-        [HttpGet]
-        [Route("[action]/{id}")]
-        public double ReviewCount(int id)
-        {
-            double c = movieService.MovieAvarageScore(id);
-            return c;
         }
     }
 }

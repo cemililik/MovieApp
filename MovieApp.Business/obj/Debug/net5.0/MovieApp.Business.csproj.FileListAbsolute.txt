@@ -11,7 +11,7 @@ C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net
 C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\MovieApp.Business.AssemblyInfoInputs.cache
 C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\MovieApp.Business.AssemblyInfo.cs
 C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\MovieApp.Business.csproj.CoreCompileInputs.cache
-C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\MovieApp.Business.csproj.CopyComplete
 C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\MovieApp.Business.dll
 C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\ref\MovieApp.Business.dll
 C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\MovieApp.Business.pdb
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.Business\obj\Debug\net5.0\MovieApp.Business.csproj.CopyComplete
