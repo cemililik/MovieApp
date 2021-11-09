@@ -26,8 +26,6 @@ namespace MovieApp.DataAccess.Concrete
             using (var contex = new ApplicationContext())
             {
                 return await contex.Reviews
-                    //.Include(j=>j.Movie)
-                    //.Include(k=>k.User)
                     .Where(i => i.MovieId == MovieID).ToListAsync();
             }
         }

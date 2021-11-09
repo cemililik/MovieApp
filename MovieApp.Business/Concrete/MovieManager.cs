@@ -28,9 +28,28 @@ namespace MovieApp.Business.Concrete
             return await _movieRepository.GetMovieById(id);
         }
 
-        //public double MovieAvarageScore(int id)
-        //{
-        //    return _movieRepository.MovieAvarageScore(id);
-        //}
+        public Movie UpdateMovie(Movie movie)
+        {
+            return _movieRepository.UpdateMovie(movie);
+        }
+        public int SaveChanges()
+        {
+            return _movieRepository.SaveChanges();
+        }
+
+        public void GetMoviesFromApi(string url, string apiKey, string language, int pageNumber)
+        {
+            _movieRepository.GetMoviesFromApi(url, apiKey, language, pageNumber);
+        }
+
+        public Task<Movie> RandomMovie()
+        {
+            return _movieRepository.RandomMovie();
+        }
+
+        public Movie SendMovieWithEmail(string emailAddress, Movie movie)
+        {
+            return _movieRepository.SendMovieWithEmail(emailAddress, movie);
+        }
     }
 }

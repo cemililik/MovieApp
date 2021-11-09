@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -24,12 +25,18 @@ namespace MovieApp.API.Controllers
         private SignInManager<User> signInManager;
         private ApplicationContext context;
         private IConfiguration configuration;
-        public UsersController(UserManager<User> _usermanager, ApplicationContext _context, SignInManager<User> _signInManager, IConfiguration _configuration)
+        private RoleManager<IdentityRole> roleManager;
+        public UsersController(UserManager<User> _usermanager,
+            ApplicationContext _context,
+            SignInManager<User> _signInManager,
+            RoleManager<IdentityRole> _roleManager,
+            IConfiguration _configuration)
         {
             usermanager = _usermanager;
             context = _context;
             signInManager = _signInManager;
             configuration = _configuration;
+            roleManager = _roleManager;
         }
 
         [HttpPost]
@@ -40,6 +47,8 @@ namespace MovieApp.API.Controllers
             newuser.UserName = user.EmailAddress;
             newuser.Email = user.EmailAddress;
             IdentityResult result = await usermanager.CreateAsync(newuser, user.Password);
+            var role = "Admin";
+            await roleManager.CreateAsync(new IdentityRole(role));
             if (result.Succeeded)
             {
                 context.SaveChanges();
@@ -59,7 +68,21 @@ namespace MovieApp.API.Controllers
             
             if (result.Succeeded)
             {
-                return Ok();
+                //-----Token Creator
+                var TokenHandler = new JwtSecurityTokenHandler();
+                var key = Encoding.ASCII.GetBytes(configuration["JWTKey"]);
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[]
+                    {
+                        //new Claim(ClaimTypes.Role)
+                        new Claim(ClaimTypes.Name, user.EmailAddress)
+                    }),
+                    Expires = DateTime.UtcNow.AddDays(1),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
+                var token = TokenHandler.CreateToken(tokenDescriptor);
+                return Ok(TokenHandler.WriteToken(token));
             }
             else
             {

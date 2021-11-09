@@ -39,8 +39,7 @@ namespace MovieApp.API
             services.AddDbContext<ApplicationContext>();
             //------
             services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationContext>()
-                .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<ApplicationContext>();
             //------
             var key = Encoding.ASCII.GetBytes(Configuration["JWTKey"]);
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

@@ -7,6 +7,6 @@ namespace MovieApp.Entities
     public class User : IdentityUser
     {
 
-        public List<Review> Reviews { get; set; }
+        public ICollection<Review> Reviews { get; set; }
     }
 }

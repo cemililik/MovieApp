@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MovieApp.DataAccess.Migrations
 {
-    public partial class initial2 : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,20 +47,6 @@ namespace MovieApp.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Categories",
-                columns: table => new
-                {
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.CategoryId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Movies",
                 columns: table => new
                 {
@@ -68,25 +54,12 @@ namespace MovieApp.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MovieName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AvarageScore = table.Column<double>(type: "float", nullable: true)
+                    AvarageScore = table.Column<double>(type: "float", nullable: true),
+                    TotalScore = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Movies", x => x.MovieId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Stars",
-                columns: table => new
-                {
-                    StarId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    StarName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StarDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Stars", x => x.StarId);
                 });
 
             migrationBuilder.CreateTable(
@@ -196,32 +169,6 @@ namespace MovieApp.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MovieCategories",
-                columns: table => new
-                {
-                    MovieId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false),
-                    MovieCategoryId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MovieCategories", x => new { x.CategoryId, x.MovieId });
-                    table.ForeignKey(
-                        name: "FK_MovieCategories_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MovieCategories_Movies_MovieId",
-                        column: x => x.MovieId,
-                        principalTable: "Movies",
-                        principalColumn: "MovieId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Reviews",
                 columns: table => new
                 {
@@ -246,32 +193,6 @@ namespace MovieApp.DataAccess.Migrations
                         column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "MovieId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MovieStars",
-                columns: table => new
-                {
-                    MovieId = table.Column<int>(type: "int", nullable: false),
-                    StarId = table.Column<int>(type: "int", nullable: false),
-                    MovieStarId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MovieStars", x => new { x.MovieId, x.StarId });
-                    table.ForeignKey(
-                        name: "FK_MovieStars_Movies_MovieId",
-                        column: x => x.MovieId,
-                        principalTable: "Movies",
-                        principalColumn: "MovieId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MovieStars_Stars_StarId",
-                        column: x => x.StarId,
-                        principalTable: "Stars",
-                        principalColumn: "StarId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -315,16 +236,6 @@ namespace MovieApp.DataAccess.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MovieCategories_MovieId",
-                table: "MovieCategories",
-                column: "MovieId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MovieStars_StarId",
-                table: "MovieStars",
-                column: "StarId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Reviews_MovieId",
                 table: "Reviews",
                 column: "MovieId");
@@ -353,22 +264,10 @@ namespace MovieApp.DataAccess.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "MovieCategories");
-
-            migrationBuilder.DropTable(
-                name: "MovieStars");
-
-            migrationBuilder.DropTable(
                 name: "Reviews");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "Categories");
-
-            migrationBuilder.DropTable(
-                name: "Stars");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

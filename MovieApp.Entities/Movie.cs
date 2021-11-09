@@ -15,10 +15,8 @@ namespace MovieApp.Entities
         public string MovieName { get; set; }
         public string Description { get; set; }
         public double? AvarageScore { get; set; }
+        public int? TotalScore { get; set; }
 
-
-        public List<Review> Reviews { get; set; }
-        public List<MovieStar> MovieStars { get; set; }
-        public List<MovieCategory> MovieCategories { get; set; }
+        public ICollection<Review> Reviews { get; set; }
     }
 }
