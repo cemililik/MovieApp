@@ -68,16 +68,12 @@ namespace MovieApp.API.Controllers
             var test = context.Users.Select(x => x.Email == user.EmailAddress);
             if (result.Succeeded)
             {
-                //var token2 = generateJwtToken(user);
-                //var token = generateJwtToken
-                //---- - Token Creator
                 var TokenHandler = new JwtSecurityTokenHandler();
                 var key = Encoding.ASCII.GetBytes(configuration["JWTKey"]);
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        //new Claim(ClaimTypes.Role)
                         new Claim("id", _user.Id)
                     }),
                     Expires = DateTime.UtcNow.AddDays(1),

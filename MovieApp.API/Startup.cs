@@ -44,6 +44,8 @@ namespace MovieApp.API
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
             //------
+
+            //----------------DEFAULT JWT
             //var key = Encoding.ASCII.GetBytes(Configuration["JWTKey"]);
             //services.AddAuthentication(x =>
             //{
@@ -62,6 +64,7 @@ namespace MovieApp.API
             //            ValidateAudience = false
             //        };
             //    });
+            //----------------------------------------------------------------
 
 
             services.AddCors();
@@ -91,16 +94,19 @@ namespace MovieApp.API
                 .AllowAnyMethod()
                 .AllowAnyHeader());
 
-            // custom jwt auth middleware
+            
 
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            // custom jwt auth middleware
             app.UseMiddleware<JwtMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            //this is Api call from TMDB 
             //GetMoviesFromApiA.GetMoviesFromApiAuto(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider);
 
         }

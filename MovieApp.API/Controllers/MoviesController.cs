@@ -35,7 +35,6 @@ namespace MovieApp.API.Controllers
             reviewService = _reviewService;
             userManager = _userManager;
         }
-        [Authorize]
         [HttpGet]
         [Route("[action]/{pageNumber}/{pageSize}")]
         public async Task<IActionResult> GetAllMovies(int pageNumber,int pageSize)
@@ -83,8 +82,8 @@ namespace MovieApp.API.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                //var user = await userManager.FindByNameAsync(User.Identity.Name);
-                //review.UserId = user.Id;
+                var user = await userManager.FindByNameAsync(User.Identity.Name);
+                review.UserId = user.Id;
                 await reviewService.CreateReview(review);
 
                 //--for calculate awarage score for movie
@@ -92,29 +91,15 @@ namespace MovieApp.API.Controllers
                 movie.TotalScore += review.ReviewScore;
                 int scorecount = movie.Reviews.Count();
                 movie.AvarageScore = movie.TotalScore / scorecount;
+                //-------***UPDATE IS NOT WORKING Check this later
                 movieService.UpdateMovie(movie);
+                movieService.SaveChanges();
                 reviewService.SaveChanges();
                 return Ok(review);
             }
             else
             {
-                //----- For now
-                review.UserId = "144145ac-e163-47cd-89bb-d59d682ddfba";
-                await reviewService.CreateReview(review);
-
-                //---- Temp for test
-
-                //--for calculate awarage score for movie ********IS NOT WORKING********
-                var movie = await movieService.GetMovieById(review.MovieId);
-                movie.TotalScore = movie.TotalScore + review.ReviewScore;
-                int scorecount = movie.Reviews.Count();
-                movie.MovieName = "Changed1111";
-                movie.AvarageScore = movie.TotalScore / scorecount;
-                //movieService.UpdateMovie(movie);
-                movieService.SaveChanges();
-                //--- Temp for test end
-                reviewService.SaveChanges();
-                return Ok(review);
+                return BadRequest(new { message = "You must Login!!" });
             }
         }
 
