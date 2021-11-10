@@ -15,7 +15,7 @@ namespace MovieApp.Entities
         public string MovieName { get; set; }
         public string Description { get; set; }
         public double? AvarageScore { get; set; }
-        public int? TotalScore { get; set; }
+        public int? TotalScore { get; set; } 
 
         public ICollection<Review> Reviews { get; set; }
     }

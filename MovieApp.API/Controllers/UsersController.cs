@@ -82,7 +82,8 @@ namespace MovieApp.API.Controllers
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var token = TokenHandler.CreateToken(tokenDescriptor);
-                return Ok(TokenHandler.WriteToken(token));
+                user.Token = TokenHandler.WriteToken(token);
+                return Ok(user);
             }
             else
             {

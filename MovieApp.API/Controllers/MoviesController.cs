@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 
 namespace MovieApp.API.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class MoviesController : ControllerBase
@@ -99,12 +100,13 @@ namespace MovieApp.API.Controllers
 
                 //---- Temp for test
 
-                //--for calculate awarage score for movie
+                //--for calculate awarage score for movie ********IS NOT WORKING********
                 var movie = await movieService.GetMovieById(review.MovieId);
-                movie.TotalScore += review.ReviewScore;
+                movie.TotalScore = movie.TotalScore + review.ReviewScore;
                 int scorecount = movie.Reviews.Count();
+                movie.MovieName = "Changed1111";
                 movie.AvarageScore = movie.TotalScore / scorecount;
-                movieService.UpdateMovie(movie);
+                //movieService.UpdateMovie(movie);
                 movieService.SaveChanges();
                 //--- Temp for test end
                 reviewService.SaveChanges();
@@ -114,7 +116,7 @@ namespace MovieApp.API.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        public IActionResult GetFromApi()
+        public IActionResult GetFromApiManual()
         {
             string url = "https://api.themoviedb.org/3/movie/popular"; 
             string apiKey = "113287fcce86d993c720b63139ee4826";
@@ -123,11 +125,7 @@ namespace MovieApp.API.Controllers
             movieService.GetMoviesFromApi(url, apiKey, language, pageNumber);
             return Ok();
         }
-        /// <summary>
-        /// Parameter is string. Dont forget "" symbols
-        /// </summary>
-        /// <param name="emailaddress"></param>
-        /// <returns></returns>
+
         [HttpPost]
         [Route("[action]")]
         public async Task<IActionResult> RecommendRandomMovie([FromBody] string emailaddress)

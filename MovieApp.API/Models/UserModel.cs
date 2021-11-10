@@ -13,5 +13,6 @@ namespace MovieApp.API.Models
         public string EmailAddress { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        public string Token { get; set; }
     }
 }

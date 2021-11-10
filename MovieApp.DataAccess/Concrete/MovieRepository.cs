@@ -53,7 +53,6 @@ namespace MovieApp.DataAccess.Concrete
 
         public Root ApiCall(string url,string apiKey,string language, int pageNumber)
         {
-            //https://api.themoviedb.org/3/movie/popular?api_key=113287fcce86d993c720b63139ee4826&language=en-US&page=" + i
             var ApiUrl = url + "?api_key=" + apiKey + "&language=" + language + "&page=" + pageNumber;
 
             Uri url1 = new Uri(ApiUrl);
@@ -68,14 +67,7 @@ namespace MovieApp.DataAccess.Concrete
         {
             for (int i = 1; i <= pageNumber; i++)
             {
-                //var ApiUrl = "https://api.themoviedb.org/3/movie/popular?api_key=113287fcce86d993c720b63139ee4826&language=en-US&page=" + i;
-
-                //Uri url = new Uri(ApiUrl);
-                //WebClient client = new WebClient();
-                //client.Encoding = System.Text.Encoding.UTF8;
-                //string json = client.DownloadString(url);
-                //Root rootdata = JsonConvert.DeserializeObject<Root>(json);
-
+                
                 Root rootdata = ApiCall(url, apiKey, language, i);
                 using var contex = new ApplicationContext();
                 {
@@ -84,6 +76,7 @@ namespace MovieApp.DataAccess.Concrete
                         Movie movietemp = new Movie();
                         movietemp.MovieName = item.title;
                         movietemp.Description = item.overview;
+                        movietemp.TotalScore = 0;
 
                         var check = contex.Movies.FirstOrDefault(i => i.MovieName == item.title);
                         if (check == null)
