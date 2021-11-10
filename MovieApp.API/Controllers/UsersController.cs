@@ -56,7 +56,7 @@ namespace MovieApp.API.Controllers
             }
             else
             {
-                return BadRequest();
+                return BadRequest(new { message = "Problem. Try" });
             }
         }
         [HttpPost]
@@ -64,11 +64,13 @@ namespace MovieApp.API.Controllers
         public async Task<IActionResult> SignIn([FromBody] UserModel user)
         {
             var _user = await usermanager.FindByEmailAsync(user.EmailAddress);
-            var result = await signInManager.PasswordSignInAsync(_user, user.Password,true,true);
-            
+            var result = await signInManager.PasswordSignInAsync(_user, user.Password, true, true);
+            var test = context.Users.Select(x => x.Email == user.EmailAddress);
             if (result.Succeeded)
             {
-                //-----Token Creator
+                //var token2 = generateJwtToken(user);
+                //var token = generateJwtToken
+                //---- - Token Creator
                 var TokenHandler = new JwtSecurityTokenHandler();
                 var key = Encoding.ASCII.GetBytes(configuration["JWTKey"]);
                 var tokenDescriptor = new SecurityTokenDescriptor
@@ -76,39 +78,21 @@ namespace MovieApp.API.Controllers
                     Subject = new ClaimsIdentity(new Claim[]
                     {
                         //new Claim(ClaimTypes.Role)
-                        new Claim(ClaimTypes.Name, user.EmailAddress)
+                        new Claim("id", _user.Id)
                     }),
                     Expires = DateTime.UtcNow.AddDays(1),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var token = TokenHandler.CreateToken(tokenDescriptor);
                 user.Token = TokenHandler.WriteToken(token);
+                user.UserId = _user.Id;
                 return Ok(user);
             }
             else
             {
-                return BadRequest();
+                return BadRequest(new { message = "Username or password is incorrect" });
             }
-        }
-        [HttpGet]
-        [Route("[Action]")]
-        public IActionResult GetToken()
-        {
-            //---Get token temp
-            var TokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(/*configuration["JWTKey"]*/"denemeasdfsdgsjkgsdlfsdlkfsdl lsdk fjsdkljf asd jlakjfsd");
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, "deneme")
-                }),
-                Expires = DateTime.UtcNow.AddDays(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = TokenHandler.CreateToken(tokenDescriptor);
-            //--
-            return Ok(TokenHandler.WriteToken(token));
         }
     }
 }
+

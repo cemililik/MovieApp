@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace MovieApp.API.Controllers
 {
-    
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class MoviesController : ControllerBase
@@ -35,6 +35,7 @@ namespace MovieApp.API.Controllers
             reviewService = _reviewService;
             userManager = _userManager;
         }
+        [Authorize]
         [HttpGet]
         [Route("[action]/{pageNumber}/{pageSize}")]
         public async Task<IActionResult> GetAllMovies(int pageNumber,int pageSize)
@@ -46,7 +47,7 @@ namespace MovieApp.API.Controllers
 
         [HttpGet]
         [Route("[action]/{id}")]
-        public async Task<IActionResult> GetMovieById(int id)
+        public async Task<IActionResult> GetMovieById(int id,[FromHeader] TokenOptions token)
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -82,8 +83,8 @@ namespace MovieApp.API.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var user = await userManager.FindByNameAsync(User.Identity.Name);
-                review.UserId = user.Id;
+                //var user = await userManager.FindByNameAsync(User.Identity.Name);
+                //review.UserId = user.Id;
                 await reviewService.CreateReview(review);
 
                 //--for calculate awarage score for movie
