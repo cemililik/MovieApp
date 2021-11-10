@@ -4,12 +4,5 @@
         <name>MovieApp.API</name>
     </assembly>
     <members>
-        <member name="M:MovieApp.API.Controllers.MoviesController.RecommendRandomMovie(System.String)">
-            <summary>
-            Parameter is string. Dont forget "" symbols
-            </summary>
-            <param name="emailaddress"></param>
-            <returns></returns>
-        </member>
     </members>
 </doc>

@@ -8,6 +8,7 @@ using MovieApp.Business.Concrete;
 using MovieApp.DataAccess;
 using MovieApp.Entities;
 using Newtonsoft.Json;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,10 +36,12 @@ namespace MovieApp.API.Controllers
             userManager = _userManager;
         }
         [HttpGet]
-        public async Task<IActionResult> GetAllMovies()
+        [Route("[action]/{pageNumber}/{pageSize}")]
+        public async Task<IActionResult> GetAllMovies(int pageNumber,int pageSize)
         {
             var movies = await movieService.GetAllMovies();
-            return Ok(movies);
+            PagedList<Movie> result = new PagedList<Movie>(movies, pageNumber, pageSize);
+            return Ok(result);
         }
 
         [HttpGet]

@@ -74,3 +74,5 @@ C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.API\bin\Debug\net5.0\M
 C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.API\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.API\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.API\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.API\bin\Debug\net5.0\PagedList.dll
+C:\Users\Omer ILIK\Desktop\ZirveYazilim\MovieApp\MovieApp.API\obj\Debug\net5.0\MovieApp.API.csproj.CopyComplete
